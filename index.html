@@ -5,43 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Para Mi Dulce ❤️</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div class="corazones-background"></div>
+<div class="lluvia-corazones" id="lluvia"></div>
+<div id="contenedor-frases"></div>
 
-<div class="main-container">
-  
-  <div class="card">
-    <h1>Para mi persona favorita ❤️</h1>
-    <div class="message">
-      <p>A veces me detengo a pensar en cómo era mi vida antes de ti, y me doy cuenta de que simplemente estaba esperando a que llegaras.</p>
-      <p>Eres el detalle más lindo que el destino puso en mi camino. Tu sonrisa es mi lugar favorito en el mundo y tu felicidad es mi prioridad diaria.</p>
-      <p>Gracias por amarme, por cuidarme y por ser esa luz que ilumina incluso mis días más grises. No quiero una vida perfecta, solo quiero una vida a tu lado.</p>
-      <p><strong>Te amo con toda mi alma, hoy y siempre.</strong></p>
+<div class="contenedor-principal">
+
+  <div class="carta-magica">
+    <h1>Para Mi Dulce ❤️</h1>
+
+    <div class="texto-amor">
+      <p>Desde que llegaste, mi mundo se llenó de colores que no conocía.</p>
+      <p>Eres mi paz, mi refugio y mi sueño hecho realidad.</p>
+      <p><strong>Gracias por ser tú.</strong></p>
     </div>
 
-    <div class="counter-box">
-      <span>Cada segundo a tu lado ha sido un regalo:</span>
-      <div id="conta">Calculando nuestra historia...</div>
+    <div class="contador-seccion">
+      <span>Nuestro amor lleva:</span>
+      <div id="conta">Cargando tiempo...</div>
     </div>
 
-    <div class="button-group">
-      <button class="btn music" onclick="reproducirCancion()">Reproduce Canción</button>
-      <button class="btn love" onclick="lluviaDeAmor()">💖 ¿Quieres saber cuánto te amo?</button>
+    <div class="controles">
+      <button class="btn-estilo musica" onclick="reproducirCancion()">
+        <span class="icon">🎵</span> Nuestra Canción
+      </button>
+      <button class="btn-estilo amor" onclick="lluviaDeAmor()">
+        <span class="icon">💖</span> ¿Cuánto te amo?
+      </button>
     </div>
   </div>
 
-  <div class="visual-area">
+  <div class="visual-seccion">
     <div id="arbol"></div>
-    <div class="heart-text">MI AMOR</div>
+    <div class="corazon-centro">
+      <span>MI TODO</span>
+    </div>
   </div>
 
 </div>
 
 <div id="audio-container"></div>
-<div id="contenedor-frases"></div>
 
 <script src="script.js"></script>
 </body>
