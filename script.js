@@ -1,4 +1,5 @@
 console.log("script cargado ")
+alert("js funciona")
 const fechaInicio = new Date(2023, 9, 20);
 
 function actualizarContador() {
