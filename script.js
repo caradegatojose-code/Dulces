@@ -10,7 +10,7 @@ function actualizarContador() {
   const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
   const segundos = Math.floor((diferencia / 1000) % 60);
 
-  document.getElementById("contador").innerHTML =
+  document.getElementById("conta").innerHTML =
     `${dias} días ${horas}h ${minutos}m ${segundos}s 💞`;
 }
 
