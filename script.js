@@ -1,102 +1,58 @@
-// --- CONFIGURACIÓN ---
+// AJUSTA AQUÍ TU FECHA DE INICIO
 const fechaInicio = new Date(2023, 9, 20); 
 
-// --- CONTADOR ---
-function actualizarContador() {
+function updateCounter() {
     const ahora = new Date();
-    const diferencia = ahora - fechaInicio;
-
-    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
-    const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
-    const segundos = Math.floor((diferencia / 1000) % 60);
-
-    document.getElementById("conta").innerHTML = 
-        `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+    const diff = ahora - fechaInicio;
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff / (1000*60*60)) % 24);
+    const m = Math.floor((diff / (1000*60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+    document.getElementById("conta").innerHTML = `${d} días, ${h}h ${m}m ${s}s 💞`;
 }
-setInterval(actualizarContador, 1000);
-actualizarContador();
+setInterval(updateCounter, 1000);
+updateCounter();
 
-// --- ÁRBOL DE CORAZONES (Sin Tronco) ---
-function crearArbol() {
-    const arbol = document.getElementById("arbol");
-    const centroX = 225; 
-    const centroY = 200;
+function drawHeart() {
+    const container = document.getElementById("arbol");
+    const cx = 225, cy = 200;
     let t = 0;
-
-    const interval = setInterval(() => {
-        if (t >= Math.PI * 2) {
-            clearInterval(interval);
-            return;
-        }
-
-        // Ecuación matemática del corazón
+    const timer = setInterval(() => {
+        if (t >= Math.PI * 2) { clearInterval(timer); return; }
         const x = 16 * Math.pow(Math.sin(t), 3);
-        const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
-
-        const heart = document.createElement("div");
-        heart.className = "heart-tree";
-        heart.innerHTML = "❤️";
-        heart.style.left = centroX + x * 12 + "px";
-        heart.style.top = centroY - y * 12 + "px";
-        heart.style.fontSize = (Math.random() * 10 + 15) + "px";
-        
-        arbol.appendChild(heart);
+        const y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
+        const h = document.createElement("div");
+        h.className = "heart-tree";
+        h.innerHTML = "❤️";
+        h.style.left = cx + x * 12 + "px";
+        h.style.top = cy - y * 12 + "px";
+        container.appendChild(h);
         t += 0.05;
-    }, 30);
+    }, 25);
 }
-crearArbol();
+drawHeart();
 
-// --- MÚSICA ---
 function reproducirCancion() {
-    const container = document.getElementById("audio-container");
-    // Usamos un iframe de YouTube oculto pero funcional
-    container.innerHTML = `
-        <iframe width="0" height="0" 
-        src="https://www.youtube.com/embed/589ampu8OJo?autoplay=1" 
-        frameborder="0" allow="autoplay"></iframe>`;
-    
-    alert("🎵 ¡Nuestra canción está sonando!");
+    const audio = document.getElementById("audio-container");
+    // ID de la canción de YouTube
+    audio.innerHTML = `<iframe width="0" height="0" src="https://www.youtube.com/embed/589ampu8OJo?autoplay=1" allow="autoplay"></iframe>`;
 }
 
-// --- BOTÓN ¿CUÁNTO TE AMO? (Lluvia de frases) ---
 function lluviaDeAmor() {
     const frases = [
-        "Te amo mucho", "Preciosa", "Eres mi vida", 
-        "Mucho mucho mucho", "Te amo infinito", "Bonita", 
-        "Mi todo", "Eres perfecta", "Mi corazón", "Te amo"
+        "Eres mi sol", "Te amo infinitamente", "Preciosa mía", 
+        "Mi vida entera", "Eres perfecta", "Gracias por estar", 
+        "Me haces muy feliz", "Por mil años más", "Te adoro"
     ];
-
-    for (let i = 0; i < 15; i++) {
+    for(let i=0; i<12; i++) {
         setTimeout(() => {
-            const frase = document.createElement("div");
-            frase.className = "frase-flotante";
-            frase.innerHTML = frases[Math.floor(Math.random() * frases.length)];
-            
-            // Posición aleatoria
-            frase.style.left = Math.random() * 80 + 10 + "vw";
-            frase.style.top = Math.random() * 80 + 10 + "vh";
-            
-            document.body.appendChild(frase);
-
-            // Eliminar después de la animación
-            setTimeout(() => frase.remove(), 3000);
-            
-            // Crear también un corazón extra por cada frase
-            crearCorazonExplosion(frase.style.left, frase.style.top);
-        }, i * 200);
+            const div = document.createElement("div");
+            div.className = "frase-f";
+            div.innerHTML = frases[Math.floor(Math.random()*frases.length)];
+            div.style.left = (Math.random() * 70 + 15) + "vw";
+            div.style.top = (Math.random() * 70 + 15) + "vh";
+            document.getElementById("contenedor-frases").appendChild(div);
+            setTimeout(() => div.remove(), 3500);
+        }, i * 300);
     }
-}
-
-function crearCorazonExplosion(x, y) {
-    const c = document.createElement("div");
-    c.innerHTML = "💖";
-    c.style.position = "fixed";
-    c.style.left = x;
-    c.style.top = y;
-    c.style.fontSize = "2rem";
-    c.style.pointerEvents = "none";
-    c.style.animation = "animarFrase 2s forwards";
-    document.body.appendChild(c);
-    setTimeout(() => c.remove(), 2000);
 }
