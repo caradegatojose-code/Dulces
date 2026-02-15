@@ -1,4 +1,4 @@
-const fechaInicio = new Date(2023, 9, 20); // Ajusta tu fecha aquí
+const fechaInicio = new Date(2023, 9, 20); // Corregido: 'const' en minúsculas
 
 function actualizarContador() {
   const ahora = new Date();
@@ -9,16 +9,19 @@ function actualizarContador() {
   const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
   const segundos = Math.floor((diferencia / 1000) % 60);
 
-  document.getElementById("conta").innerHTML =
-    `${dias}d ${horas}h ${minutos}m ${segundos}s 💞`;
+  const elementoConta = document.getElementById("conta");
+  if (elementoConta) {
+    elementoConta.innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s 💞`;
+  }
 }
 
 setInterval(actualizarContador, 1000);
 actualizarContador();
 
-// ÁRBOL MUCHO MÁS TUPIDO
 function crearArbolAnimado() {
   const arbol = document.getElementById("arbol");
+  if (!arbol) return; // Evita error si el div no existe
+  
   const centerX = 200;
   const centerY = 180;
   let t = 0;
@@ -40,12 +43,14 @@ function crearArbolAnimado() {
     heart.style.fontSize = (Math.random() * 8 + 10) + "px";
 
     arbol.appendChild(heart);
-    t += 0.03; // Crea muchos corazones para que se vea lleno
+    t += 0.03;
   }, 20);
 }
 
-// CORAZONES FLOTANTES DE FONDO
 function crearCorazonesDeFondo() {
+  const contenedor = document.querySelector('.corazones');
+  if (!contenedor) return;
+
   setInterval(() => {
     const heart = document.createElement("div");
     heart.classList.add("corazon-fondo");
@@ -53,32 +58,37 @@ function crearCorazonesDeFondo() {
     heart.style.left = Math.random() * 100 + "vw";
     heart.style.fontSize = (Math.random() * 10 + 15) + "px";
     heart.style.animationDuration = (Math.random() * 5 + 5) + "s";
-    document.querySelector('.corazones').appendChild(heart);
+    contenedor.appendChild(heart);
     
     setTimeout(() => heart.remove(), 8000);
   }, 400);
 }
 
-// MÚSICA (Activa por interacción)
 function reproducirCancion() {
     const container = document.getElementById("audio-container");
     const btn = document.getElementById("btn-musica");
     
-    container.innerHTML = `
-        <iframe src="https://www.youtube.com/embed/589ampu8OJo?autoplay=1" 
-        allow="autoplay"></iframe>`;
+    if (container) {
+      container.innerHTML = `<iframe src="https://www.youtube.com/embed/589ampu8OJo?autoplay=1" allow="autoplay"></iframe>`;
+    }
     
-    btn.innerHTML = "💖 Sonando...";
-    btn.style.background = "#ff758c";
+    if (btn) {
+      btn.innerHTML = "💖 Sonando...";
+      btn.style.background = "#ff758c";
+    }
 }
 
-// LLUVIA DE AMOR Y FRASES
 function lluviaDeAmor() {
   const frases = [
     "Te amo mucho♥️", "♥️mucho mucho mucho♥️", "Te amo ♥️", "Bonita♥️", 
     "Preciosa♥️", "Eres mi todo♥️", "Mi vida♥️", "Te amo infinito",
     "♥️Eres increíble", "Mi amor♥️","tqm♥️" ,"te adoro ♥️", "♥️♥️♥️♥️♥️"
   ];
+
+  const contenedorFrases = document.getElementById("contenedor-frases");
+  const contenedorCorazones = document.querySelector('.corazones');
+
+  if (!contenedorFrases) return;
 
   for (let i = 0; i < 12; i++) {
     setTimeout(() => {
@@ -87,17 +97,20 @@ function lluviaDeAmor() {
       f.innerHTML = frases[Math.floor(Math.random() * frases.length)];
       f.style.left = Math.random() * 70 + 15 + "vw";
       f.style.top = Math.random() * 70 + 15 + "vh";
-      document.getElementById("contenedor-frases").appendChild(f);
+      contenedorFrases.appendChild(f);
 
-      // Explosión de corazones extra al salir la frase
-      const h = document.createElement("div");
-      h.className = "corazon-fondo";
-      h.innerHTML = "💖";
-      h.style.left = f.style.left;
-      h.style.fontSize = "40px";
-      document.querySelector('.corazones').appendChild(h);
+      if (contenedorCorazones) {
+        const h = document.createElement("div");
+        h.className = "corazon-fondo";
+        h.innerHTML = "💖";
+        h.style.left = f.style.left;
+        h.style.top = f.style.top;
+        h.style.fontSize = "40px";
+        contenedorCorazones.appendChild(h);
+        setTimeout(() => h.remove(), 3000);
+      }
 
-      setTimeout(() => { f.remove(); h.remove(); }, 3000);
+      setTimeout(() => f.remove(), 3000);
     }, i * 250);
   }
 }
@@ -105,3 +118,4 @@ function lluviaDeAmor() {
 // Iniciar efectos
 crearArbolAnimado();
 crearCorazonesDeFondo();
+      
