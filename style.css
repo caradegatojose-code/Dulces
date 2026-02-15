@@ -1,23 +1,30 @@
 body {
   margin: 0;
   overflow: hidden;
-  background: linear-gradient(to right, #ff4e50, #fc913a);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  background: linear-gradient(135deg, #ff4e50, #ff758c);
   font-family: Arial, sans-serif;
 }
 
+/* Animación entrada carta */
 .carta {
-  background: #f5e6d8;
+  background: #fff0f5;
   padding: 30px;
   border-radius: 20px;
-  width: 360px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-  text-align: left;
-  position: relative;
-  z-index: 10;
+  width: 380px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  animation: aparecer 1.5s ease;
+}
+
+@keyframes aparecer {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.contenedor {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
 }
 
 button {
@@ -30,21 +37,11 @@ button {
   cursor: pointer;
 }
 
-/* Corazones cayendo */
-.heart {
-  position: absolute;
-  top: -10px;
-  color: red;
-  font-size: 20px;
-  animation: fall linear forwards;
+button:hover {
+  background: darkred;
 }
 
-@keyframes fall {
-  to {
-    transform: translateY(100vh);
-    opacity: 0;
-  }
-}
+/* Árbol */
 .arbol-container {
   position: relative;
   width: 400px;
@@ -59,8 +56,13 @@ button {
 
 .heart-tree {
   position: absolute;
-  color: red;
   font-size: 18px;
+  opacity: 0;
+  animation: aparecerCorazon 0.5s forwards;
+}
+
+@keyframes aparecerCorazon {
+  to { opacity: 1; }
 }
 
 .tronco {
@@ -68,8 +70,41 @@ button {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 20px;
+  width: 25px;
   height: 100px;
   background: brown;
   border-radius: 10px;
+}
+
+.nombre-centro {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 10px red;
+  animation: latido 1s infinite;
+}
+
+@keyframes latido {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.1); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Corazones flotando */
+.corazones::before,
+.corazones::after {
+  content: "❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️";
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  animation: flotar 20s linear infinite;
+}
+
+@keyframes flotar {
+  0% { top: 100%; }
+  100% { top: -10%; }
 }
