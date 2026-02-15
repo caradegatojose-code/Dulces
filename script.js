@@ -1,4 +1,4 @@
-const fechaInicio = new Date(2023, 9, 20); // 20 de Octubre 2023
+const fechaInicio = new Date(2023, 9, 20); // Ajusta tu fecha aquí
 
 function actualizarContador() {
   const ahora = new Date();
@@ -16,7 +16,7 @@ function actualizarContador() {
 setInterval(actualizarContador, 1000);
 actualizarContador();
 
-// ÁRBOL MEJORADO
+// ÁRBOL MUCHO MÁS TUPIDO
 function crearArbolAnimado() {
   const arbol = document.getElementById("arbol");
   const centerX = 200;
@@ -29,7 +29,6 @@ function crearArbolAnimado() {
       return;
     }
 
-    // Ecuación del corazón
     const x = 16 * Math.pow(Math.sin(t), 3);
     const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
 
@@ -38,27 +37,71 @@ function crearArbolAnimado() {
     heart.innerHTML = "❤️";
     heart.style.left = centerX + x * 10 + "px";
     heart.style.top = centerY - y * 10 + "px";
-    
-    // Variación de tamaño aleatoria para que se vea más natural
-    heart.style.fontSize = (Math.random() * 10 + 10) + "px";
+    heart.style.fontSize = (Math.random() * 8 + 10) + "px";
 
     arbol.appendChild(heart);
-    t += 0.05; // Más pequeño el incremento = más corazones y más tupido
-  }, 30);
+    t += 0.03; // Crea muchos corazones para que se vea lleno
+  }, 20);
 }
 
-crearArbolAnimado();
+// CORAZONES FLOTANTES DE FONDO
+function crearCorazonesDeFondo() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("corazon-fondo");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 10 + 15) + "px";
+    heart.style.animationDuration = (Math.random() * 5 + 5) + "s";
+    document.querySelector('.corazones').appendChild(heart);
+    
+    setTimeout(() => heart.remove(), 8000);
+  }, 400);
+}
 
-// SOLUCIÓN AL AUDIO
+// MÚSICA (Activa por interacción)
 function reproducirCancion() {
     const container = document.getElementById("audio-container");
     const btn = document.getElementById("btn-musica");
     
-    // Usamos el ID del video y forzamos el autoplay tras el clic
     container.innerHTML = `
         <iframe src="https://www.youtube.com/embed/589ampu8OJo?autoplay=1" 
         allow="autoplay"></iframe>`;
     
-    btn.innerHTML = "💖 Sonando para ti...";
+    btn.innerHTML = "💖 Sonando...";
     btn.style.background = "#ff758c";
 }
+
+// LLUVIA DE AMOR Y FRASES
+function lluviaDeAmor() {
+  const frases = [
+    "Te amo mucho", "Mucho mucho mucho", "Te amo", "Bonita", 
+    "Preciosa", "Eres mi todo", "Mi vida", "Te amo infinito",
+    "Eres increíble", "Mi amor"
+  ];
+
+  for (let i = 0; i < 12; i++) {
+    setTimeout(() => {
+      const f = document.createElement("div");
+      f.className = "frase-amor";
+      f.innerHTML = frases[Math.floor(Math.random() * frases.length)];
+      f.style.left = Math.random() * 70 + 15 + "vw";
+      f.style.top = Math.random() * 70 + 15 + "vh";
+      document.getElementById("contenedor-frases").appendChild(f);
+
+      // Explosión de corazones extra al salir la frase
+      const h = document.createElement("div");
+      h.className = "corazon-fondo";
+      h.innerHTML = "💖";
+      h.style.left = f.style.left;
+      h.style.fontSize = "40px";
+      document.querySelector('.corazones').appendChild(h);
+
+      setTimeout(() => { f.remove(); h.remove(); }, 3000);
+    }, i * 250);
+  }
+}
+
+// Iniciar efectos
+crearArbolAnimado();
+crearCorazonesDeFondo();
