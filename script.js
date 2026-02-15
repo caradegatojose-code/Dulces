@@ -41,3 +41,28 @@ function reproducirMusica() {
   // 🔥 Pega aquí el ID del video de "Lento"
   player.src = "https://music.youtube.com/watch?v=589ampu8OJo&si=LR4iV_QUZ5Z9gjw8";
 }
+function crearArbol() {
+  const arbol = document.getElementById("arbol");
+  const centerX = 200;
+  const centerY = 180;
+
+  for (let t = 0; t < Math.PI * 2; t += 0.1) {
+    const x = 16 * Math.pow(Math.sin(t), 3);
+    const y =
+      13 * Math.cos(t) -
+      5 * Math.cos(2 * t) -
+      2 * Math.cos(3 * t) -
+      Math.cos(4 * t);
+
+    const heart = document.createElement("div");
+    heart.classList.add("heart-tree");
+    heart.innerHTML = "❤️";
+
+    heart.style.left = centerX + x * 10 + "px";
+    heart.style.top = centerY - y * 10 + "px";
+
+    arbol.appendChild(heart);
+  }
+}
+
+crearArbol();
