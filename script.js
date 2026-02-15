@@ -1,4 +1,4 @@
-// 📅 CONTADOR
+console.log("script cargado ")
 const fechaInicio = new Date(2023, 9, 20);
 
 function actualizarContador() {
