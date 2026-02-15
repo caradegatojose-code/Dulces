@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para Ti ❤️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Música (oculta) -->
+  <div id="musica" style="display:none;">
+    <iframe id="player"
+      width="0"
+      height="0"
+      src=""
+      frameborder="0"
+      allow="autoplay">
+    </iframe>
+  </div>
+
+  <div class="carta">
+    <h2>Para el amor de mi vida:</h2>
+
+    <p>
+      Si pudiera elegir un lugar seguro, sería a tu lado.
+      <br><br>
+      Cuanto más tiempo estoy contigo más te amo.
+      <br><br>
+      — I Love You! 💖
+    </p>
+
+    <p class="contador-texto">
+      Mi amor por ti comenzó hace...
+    </p>
+
+    <div id="contador"></div>
+
+    <button onclick="reproducirMusica()">🎵 Reproducir nuestra canción</button>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
