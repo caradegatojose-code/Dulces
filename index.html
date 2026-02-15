@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Para Mi Dulce ❤️</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -10,8 +11,10 @@
 <div class="corazones"></div>
 
 <div class="contenedor">
+
   <div class="carta">
     <h2>Para Mi Dulce ❤️</h2>
+
     <p>
       Desde que llegaste a mi vida, todo cambió.
       <br><br>
@@ -34,15 +37,23 @@
     <div id="conta"></div>
 
     <div id="audio-container" style="display:none;"></div>
-    <button id="btn-musica" onclick="reproducirCancion()">  Reproducir Canción</button>
+    
+    <div class="botones-container">
+        <button id="btn-musica" onclick="reproducirCancion()">🎵 Nuestra Canción</button>
+        <button id="btn-amor" onclick="lluviaDeAmor()">¿Quieres saber cuánto te amo?</button>
+    </div>
   </div>
 
   <div class="arbol-container">
     <div id="arbol"></div>
-    <div class="nombre-centro">MI TODO</div>
+    <div class="nombre-centro"> para <>br<>
+      Mi niña hermosa</div>
     <div class="tronco"></div>
   </div>
+
 </div>
+
+<div id="contenedor-frases"></div>
 
 <script src="script.js"></script>
 </body>
