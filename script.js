@@ -75,9 +75,9 @@ function reproducirCancion() {
 // LLUVIA DE AMOR Y FRASES
 function lluviaDeAmor() {
   const frases = [
-    "Te amo mucho", "Mucho mucho mucho", "Te amo", "Bonita", 
-    "Preciosa", "Eres mi todo", "Mi vida", "Te amo infinito",
-    "Eres increíble", "Mi amor"
+    "Te amo mucho♥️", "♥️mucho mucho mucho♥️", "Te amo ♥️", "Bonita"♥️, 
+    "Preciosa♥️", "Eres mi todo♥️", "Mi vida♥️", "Te amo infinito",
+    "♥️Eres increíble", "Mi amor♥️","tqm♥️" ,"te adoro ♥️", "♥️♥️♥️♥️♥️"
   ];
 
   for (let i = 0; i < 12; i++) {
